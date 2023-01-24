@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cookie;
+
+class HomeController extends Controller
+{
+	public $date;
+	public $general;
+	
+	public function __construct()
+    {
+		//Общая информация о сайте
+		$this->general = [
+		'categories' => DB::table('cook_categories')->where('visible','1')->orderby('id')->get(),
+		'keywords' => DB::table('cook_keywords')->limit(30)->get(),
+		'products' => DB::table('cook_products')->limit(20)->get()];
+    }
+	
+    //Главная страница
+	public function homepage()
+    { 
+		$localInfo = ['recipes' => DB::table('cook_recipes')->limit(30)->orderby('id','DESC')->get()];
+		 
+		return view('homepage', array_merge($this->general, $localInfo));
+    }
+	
+	//Каталог рецептов
+	public function catalog()
+    { 
+		$localInfo = ['recipes' => DB::table('cook_recipes')->limit(30)->orderby('id','DESC')->get()];
+		 
+		return view('homepage', array_merge($this->general, $localInfo));
+    }
+	
+	//Рецепт
+	public function recept($alias)
+    { 
+		$localInfo = [
+		'recipe' => 
+		DB::table('cook_recipes')
+		->where('cook_recipes.alias',$alias)
+		->leftJoin('cook_categories', 'cook_recipes.id_categories', '=', 'cook_categories.id')
+		->leftJoin('cook_child_categories', 'cook_recipes.id_child_categories', '=', 'cook_child_categories.id')
+		->select('cook_recipes.*', 'cook_categories.title AS c_title', 'cook_categories.alias AS c_alias', 'cook_child_categories.title AS cc_title', 'cook_child_categories.alias AS cc_alias')
+		->first()
+		];
+		 
+		return view('recipe', array_merge($this->general, $localInfo));
+    }
+	
+	
+	
+	
+	
+}

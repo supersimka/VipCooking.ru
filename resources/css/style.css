@@ -1,0 +1,99 @@
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+	  nav{
+		  margin-right:50px;
+	  }
+	  nav ul{
+		  display:flex;
+	  }
+	  nav ul li{
+		  list-style:none;
+		  margin:5px 10px;
+	  }
+	  nav ul li ul{
+		  display:none;
+	  }
+	  nav ul li:hover ul{
+		  display:block;
+		  padding-left:10px;
+		  max-width:300px;
+		  position:absolute;
+		  background:#fff;
+	  }
+	.navbar li a{
+		font-size:18px;
+		color:#343a40;
+		padding:10px 15px;
+	}
+
+	.search{
+		height:350px;
+		background: url('/storage/fon.webp') no-repeat bottom right #d81754;
+		padding:60px 0 60px 0;
+	}
+  .smallsearch{
+    height:220px;
+    padding:20px;
+  }
+
+	.products{
+		line-height:30px;
+	}
+
+	a {
+		color:#d81754;
+	}
+
+	h1, h2, h3{
+		color:#d81754;
+		text-transform:uppercase;
+		font-weight: 400 !important;
+	}
+	h1{
+		font-size:40px;
+		margin-top:30px !important;
+		margin-bottom:30px !important;
+	}
+	h4{
+		margin:20px 0;
+	}
+	h4 a{
+		color: #d81754;
+		text-decoration:none;
+	}
+
+	.rightBlock{
+		background: #d81754;
+		padding: 30px;
+		color:#fff;
+	}
+	.rightBlock ul{
+		padding-left: 0;
+	}
+	.rightBlock ul li{
+		list-style:none;
+	}
+
+	.rightBlock a{
+		color:#fff;
+	}
+
+	.rightBlock a:hover{
+		color:#fff;
+	}
+
+	.leftBlock{
+		background:#fbd491;
+		padding: 30px;
+	}
