@@ -16,7 +16,7 @@
         "meilisearch/meilisearch-php": "^0.27.0",
         "pestphp/pest": "^1.16",
         "pestphp/pest-plugin-laravel": "^1.1",
-        "predis/predis": "^2.0",
+        "predis/predis": "^2.1",
         "tcg/voyager": "^1.6"
     },
     "require-dev": {

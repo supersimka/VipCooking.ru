@@ -25,6 +25,7 @@ Route::get('/keywords/{slug}', [HomeController::class, 'keywords']);
 Route::get('/products/{slug}', [HomeController::class, 'products']);
 Route::get('/search', [HomeController::class, 'search']);
 Route::get('/getSection', [HomeController::class, 'getSection']);
+Route::get('/test/{alias}', [HomeController::class, 'test']);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

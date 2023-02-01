@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller
 {
@@ -138,6 +139,7 @@ class HomeController extends Controller
           }
         }
 
+
 	//Рецепт
 	public function recept($alias)
     {
@@ -229,5 +231,25 @@ class HomeController extends Controller
   		      return view('recipes', array_merge($this->general, $localInfo));
           }
         }
+
+				//Test
+		    public function test($alias)
+		    {
+					$cached = Redis::get('recipes_' . $alias);
+
+					if(isset($cached))
+					{
+			      $recipes = json_decode($cached, FALSE);
+					}
+					else
+					{
+					      $recipes = DB::table('cook_recipes')->where('cook_recipes.alias',$alias)->first();
+					      Redis::set('recipes_' . $alias, json_encode($recipes));
+					 }
+
+				//	$recipe = DB::table('cook_recipes')->where('cook_recipes.alias',$alias)->first();
+
+		      return view('test',  ['array' => $recipes]);
+		    }
 
 }
