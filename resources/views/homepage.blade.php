@@ -5,41 +5,37 @@
 @endsection
 
 @section('content')
+ 
+  @isset($home['categories'])
+    @include('details.sectionsStart', ['titleH2' => __('messages.recipe_categories'),'class' => 'row'])
+      @foreach ($home['categories'] as $category)
+        @include('details.tplCategory')
+      @endforeach
+    @include('details.sectionsEnd')
+  @endisset
 
-  <section class="p-5">
-	  <h2 class="text-center  mb-4">{{ __('messages.recipe_categories') }}</h2>
-	  <div class="row">
-		@foreach ($categories as $category)
-			@include('details.tplCategory')
-		@endforeach
-		</div>
-  </section>
+  @isset($home['products'])
+    @include('details.sectionsStart', ['titleH2' => __('messages.recent_recipes'),'class' => 'text-center row'])
+      @foreach ($recipes as $recipe)
+        @include('details.tplRecipe')
+      @endforeach
+    @include('details.sectionsEnd')
+  @endisset
 
-  <section class="p-5">
-		<h2 class="text-center mb-4">{{ __('messages.recent_recipes') }}</h2>
-		<div class="row text-center">
-			@foreach ($recipes as $recipe)
-				@include('details.tplRecipe')
-			@endforeach
-		</div>
-	</section>
-
-  <section class="p-5">
-		<h2 class="text-center mb-4">{{ __('messages.products') }}</h2>
-		<div class="text-center">
-      @foreach ($products as $product)
+  @isset($home['products'])
+    @include('details.sectionsStart', ['titleH2' => __('messages.products'),'class' => 'text-center'])
+      @foreach ($home['products'] as $product)
         <a class="btn btn-outline-secondary m-2" href="/products/{{ $product->alias }}">{{ $product->title }}</a>
       @endforeach
-		</div>
-	</section>
+    @include('details.sectionsEnd')
+  @endisset
 
-  <section class="p-5">
-		<h2 class="text-center mb-4">{{ __('messages.keywords') }}</h2>
-    <div class="text-center">
-      @foreach ($keywords as $keyword)
+  @isset($home['keywords'])
+    @include('details.sectionsStart', ['titleH2' => __('messages.keywords'),'class' => 'text-center'])
+      @foreach ($home['keywords'] as $keyword)
         <a class="btn btn-outline-secondary m-2" href="/keywords/{{ $keyword->alias }}">{{ $keyword->title }}</a>
       @endforeach
-		</div>
-	</section>
+    @include('details.sectionsEnd')
+  @endisset
 
 @endsection

@@ -54,7 +54,7 @@
       <div class="col-4 col-md">
         <h5>{{ __('messages.recipe_categories') }}</h5>
 		  <ul>
-		  @foreach ($categories as $category)
+		  @foreach ($home['categories'] as $category)
 			<li><a href="/catalog/{{ $category->alias }}" class="text-white">{{ $category->title }}</a></li>
 		  @endforeach
 		  </ul>

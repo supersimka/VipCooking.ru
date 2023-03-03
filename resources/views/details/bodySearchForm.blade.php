@@ -2,7 +2,7 @@
 <div class="col-2">
   <select class="form-select form-select-lg mb-3 category" aria-label=".form-select-lg" name="category">
     <option selected value="">{{ __('messages.category') }}</option>
-    @foreach ($categories as $category)
+    @foreach ($home['categories'] as $category)
       <option value="{{ $category->id }}" @if(request('category')==$category->id) selected @endif>{{ $category->title }}</option>
     @endforeach
   </select>
@@ -20,7 +20,7 @@
 </div>
 
 <div class="col-9 products">
-  @foreach ($products as $product)
+  @foreach ($home['products'] as $product)
     <input class="form-check-input btn-dark" type="checkbox" id="Product{{ $product->id }}" name="product[]" value="{{ $product->id }}" @if(!empty(request('product'))) @if(in_array($product->id, request('product'))) checked @endif @endif>
       <label class="form-check-label" for="Product{{ $product->id }}">
         {{ $product->title }}
